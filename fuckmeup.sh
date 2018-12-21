@@ -3,7 +3,7 @@
 set -ex
 
 input="$1"
-pdupeframes=65
+pdupeframes=600
 preframes=10
 
 [[ -z $input ]] && echo "need input as \$1" && exit 1
@@ -37,6 +37,9 @@ ffmpeg -y -i "$tmpdir/bake-$file" -vf 'select=gte(n\,'$fromframe')*lte(n\,'$tofr
 
 #mv $tmpdir/bake-$file ./glitched-$file
 # spit out a dumb gif
- ffmpeg -y -i "$tmpdir/sliced-$file" -vf scale=w=480:h=-1:force_original_aspect_ratio=decrease -loop -0 "./glitched-$file.gif"
+ffmpeg -y -i "$tmpdir/sliced-$file" -vf scale=w=480:h=-1:force_original_aspect_ratio=decrease -loop -0 "./glitched-$file.gif"
+
+rm -rf "$tmpdir"
+
 
 
