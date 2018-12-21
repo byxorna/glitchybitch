@@ -3,7 +3,7 @@
 set -ex
 
 input="$1"
-pdupeframes=600
+pdupeframes=60
 preframes=10
 
 [[ -z $input ]] && echo "need input as \$1" && exit 1
