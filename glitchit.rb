@@ -38,11 +38,11 @@ end
 
 def glitch3 inputs
   # open all inputs, and smash their keyframes and pframes together
-  #input = inputs.shuffle.first
+  input = inputs.shuffle.first
   pframes = nil
   iframes = nil
   frames = nil
-  inputs.each do |input|
+  #inputs.each do |input|
    # make empty Frames objects
    frames = AviGlitch.open(input).frames.clear if frames.nil?
    iframes = AviGlitch.open(frames).frames.clear if iframes.nil?
@@ -55,14 +55,14 @@ def glitch3 inputs
      pframes.push(f) if f.is_pframe?
    end
    a.close
-  end
+  #end
 
   startframe = rand(iframes.size)
   puts "got startframe #{startframe} of #{iframes.size} keyframes (total frames: #{frames.size})"
   keepstartframes = 5+rand(15)
   newframes = frames[startframe, keepstartframes]
   #puts newframes.inspect
-  3.times do
+  1.times do
     pf = pframes[rand(pframes.size), 1]
     newframes.concat(pf*50)
   end
